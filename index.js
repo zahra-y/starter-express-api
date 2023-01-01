@@ -11,6 +11,8 @@ ig.scrapeTag('veranda').then((result) => {
   ult = result;
 });
 
+console.log(ig)
+
     app.all('/', (req, res) => {
         console.log("Just got a request!")
         res.send(ult)
