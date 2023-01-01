@@ -6,12 +6,12 @@ const ult = 'fffff2';
 
 var ig = require('instagram-scraping');
 
-ig.scrapeTag('veranda').then((result) => {
+var ult2 = ig.scrapeTag('veranda').then((result) => {
   console.log(result);
-  ult = result;
+  return result;
 });
 
-console.log(ig)
+console.log(ult2)
 
     app.all('/', (req, res) => {
         console.log("Just got a request!")
