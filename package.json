@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -18,10 +19,14 @@
   },
   "homepage": "https://github.com/cyclic-software/starter-express-api#readme",
   "dependencies": {
-    "date-fns": "^2.29.3",
+    "axios": "^1.2.2",
+    "cheerio": "^1.0.0-rc.12",
+    "ejs": "^3.1.8",
     "express": "^4.17.1",
-    "instagram-scraper-api": "^1.0.1",
     "instagram-scraping": "^1.0.17",
-    "scraper-instagram": "^1.0.17"
+    "nodemon": "^2.0.20",
+    "puppeteer": "^19.4.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
   }
 }

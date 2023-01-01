@@ -1,19 +1,59 @@
-const express = require('express')
-const app = express()
-const Insta = require('scraper-instagram');
-const InstaClient = new Insta();
+const rp = require('request-promise');
+const cheerio = require('cheerio');
+//const url = 'https://en.wikipedia.org/wiki/George_Washington';
+fs = require('fs');
 
-const result = '';
+const puppeteer = require('puppeteer');
+const url = 'https://www.instagram.com/p/CmwOewqvd2W/?utm_source=ig_web_copy_link';
 
-const yourSessionId = '6982271705%3ACqFOjDIwgfTBQH%3A13%3AAYf87RFOSbrI9-emBqZL450hctPFEeeV3aZbDL0nAQ';
+puppeteer
+  .launch()
+  .then(function(browser) {
+    return browser.newPage();
+  })
+  .then(function(page) {
+    return page.goto(url).then(function() {
+      return page.content();
+    });
+  })
+  .then(function(html) {
+    //console.log(html);
 
-InstaClient.authBySessionId(yourSessionId)
-	.then(account => console.log(account))
-	.catch(err => console.error('err: '+err));
+    const $ = cheerio.load(html);
 
-    app.all('/', (req, res) => {
-        console.log("Just got a request!")
-        res.send('hello ddd')
-    })
+    $('h2', html).each(function() {
+        console.log('h2',$(this).text());
+      });
+      
+    fs.writeFile('./views/tmp.html', html, function (err) {
+                if (err) return console.log(err);
+                console.log('Hello World > helloworld.txt');
+             });
 
-app.listen(process.env.PORT || 3000)
+  })
+  .catch(function(err) {
+    //handle error
+  });
+
+
+
+// rp(url)
+//   .then(function(html){
+//     //success!
+
+//     const $ = cheerio.load(html);
+//     console.log( '111111111',$('a.x1i10hfl', html).length);
+    
+//     console.log($('.firstHeading', html).text());
+//     console.log($('.bday', html).text());
+    
+//     fs.writeFile('./views/tmp.html', html, function (err) {
+//         if (err) return console.log(err);
+//         console.log('Hello World > helloworld.txt');
+//     });
+
+//   })
+//   .catch(function(err){
+//     console.log('err',err)
+//     //handle error
+//   });
