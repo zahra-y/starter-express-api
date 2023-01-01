@@ -1,16 +1,15 @@
 const express = require('express')
 const app = express()
-const Insta = require('scraper-instagram');
-const InstaClient = new Insta();
+
 
 const result = 'fffff2';
 
-const yourSessionId = '6982271705%3ACqFOjDIwgfTBQH%3A13%3AAYf87RFOSbrI9-emBqZL450hctPFEeeV3aZbDL0nAQ';
+var ig = require('instagram-scraping');
 
-InstaClient.authBySessionId(yourSessionId)
-	.then(account => {result = account;} )
-	.catch(err => {result = err;} )
-	.finally(err => {result = err;} );
+ig.scrapeTag('veranda').then((result2) => {
+  result = result2;
+});
+
 
     app.all('/', (req, res) => {
         console.log("Just got a request!")

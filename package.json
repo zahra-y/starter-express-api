@@ -19,6 +19,7 @@
   "homepage": "https://github.com/cyclic-software/starter-express-api#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "instagram-scraping": "^1.0.17",
     "scraper-instagram": "^1.0.17"
   }
 }
