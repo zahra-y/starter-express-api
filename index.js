@@ -1,20 +1,18 @@
 const express = require('express')
-const app = express()
+const app = express();
 
+import { instagram } from 'instagram-scraper-api';
 
 const ult = 'fffff2';
 
-var ig = require('instagram-scraping');
+instagram
+  .user('willsmith')
+  .then((user) => console.log(user))
+  .catch((err) => console.error(err));
 
-var ult2 = ig.scrapeTag('veranda').then((result) => {
-  console.log(result);
-  return result;
-});
-
-console.log(ult2)
 
     app.all('/', (req, res) => {
-        console.log("Just got a request!")
+        console.log("Just got a request2!")
         res.send(ult)
     })
 

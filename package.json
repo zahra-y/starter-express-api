@@ -20,6 +20,7 @@
   "dependencies": {
     "date-fns": "^2.29.3",
     "express": "^4.17.1",
+    "instagram-scraper-api": "^1.0.1",
     "instagram-scraping": "^1.0.17",
     "scraper-instagram": "^1.0.17"
   }
