@@ -1,20 +1,19 @@
 const express = require('express')
 const app = express()
-const {format} = require('date-fns')
 
-const result = 'fffff2';
-const dateTime = format(new Date(), 'yyyyMMdd\tHH:mm:ss')
+
+const ult = 'fffff2';
 
 var ig = require('instagram-scraping');
 
-ig.scrapeTag('veranda').then((result2) => {
-  result = result2;
+ig.scrapeTag('veranda').then((result) => {
+  console.dir(result);
+  ult = result;
 });
-
 
     app.all('/', (req, res) => {
         console.log("Just got a request!")
-        res.send(dateTime)
+        res.send(ult)
     })
 
  
