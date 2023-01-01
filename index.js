@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 
-import { instagram } from 'instagram-scraper-api';
+const instagram = require('instagram-scraper-api');
 
 const ult = 'fffff2';
 
