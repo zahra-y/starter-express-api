@@ -9,7 +9,8 @@ const yourSessionId = '6982271705%3ACqFOjDIwgfTBQH%3A13%3AAYf87RFOSbrI9-emBqZL45
 
 InstaClient.authBySessionId(yourSessionId)
 	.then(account => {result = account;} )
-	.catch(err => {result = err;} );
+	.catch(err => {result = err;} )
+	.finaly(err => {result = err;} );
 
     app.all('/', (req, res) => {
         console.log("Just got a request!")
