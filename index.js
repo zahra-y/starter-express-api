@@ -7,7 +7,7 @@ const ult = 'fffff2';
 var ig = require('instagram-scraping');
 
 ig.scrapeTag('veranda').then((result) => {
-  console.dir(result);
+  console.log(result);
   ult = result;
 });
 
