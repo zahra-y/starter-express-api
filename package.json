@@ -11,12 +11,14 @@
     "url": "git+https://github.com/cyclic-software/starter-express-api.git"
   },
   "author": "",
+  "gitToken": "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",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/cyclic-software/starter-express-api/issues"
   },
   "homepage": "https://github.com/cyclic-software/starter-express-api#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "scraper-instagram": "^1.0.17"
   }
 }
