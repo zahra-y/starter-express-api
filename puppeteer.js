@@ -1,5 +1,4 @@
 const puppeteer = require('puppeteer');
-const shuffle = require('shuffle-array');
 const cheerio = require('cheerio');
 fs = require('fs');
 

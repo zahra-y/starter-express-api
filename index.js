@@ -1,11 +1,3 @@
-const rp = require('request-promise');
-const cheerio = require('cheerio');
-//const url = 'https://en.wikipedia.org/wiki/George_Washington';
-fs = require('fs');
-
-const puppeteer = require('puppeteer');
-const url = 'https://www.instagram.com/p/CmwOewqvd2W/?utm_source=ig_web_copy_link';
-
 
 let bot = require('./puppeteer');
 let cnf = require('./config/config.json');
