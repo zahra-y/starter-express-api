@@ -1,7 +1,8 @@
 //const url = 'https://en.wikipedia.org/wiki/George_Washington'
 
-let bot = require('./puppeteer');
-bot();
+//let bot = require('./puppeteer');
+let botTwitt = require('./pup-twitt');
+botTwitt();
 
 // fs.readFile('./views/tmp.html', 'utf8', (err, html) => {
 //     if (err) {

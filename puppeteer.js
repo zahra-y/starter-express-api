@@ -10,15 +10,12 @@ let run = async function () {
     // set up Puppeteer
     const browser = await puppeteer.launch({
         headless: false,
-        args: [
-        '--window-size=1920,1080'
-        ]
     });
     const page = await browser.newPage();
     
     await page.setUserAgent("Mozilla/5.0 (X11; CrOS x86_64 10066.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36");
     //page.setViewport({width: 1200, height: 764});
-
+    
     // Load Instagram
     await page.goto('https://www.instagram.com/accounts/login/',{waitUntil:'networkidle2'});
 
@@ -27,24 +24,25 @@ let run = async function () {
     //await page.waitForTimeout(5000);
     await page.screenshot({ path: `screenshots/1.jpeg` }); 
 
+    
        
     //console.log('page_content',page_content)
     //await page.click(cnf.selectors.home_to_login_button);
     //await page.waitForTimeout(2500);
 
-    // Login
-    await page.click(cnf.selectors.username_field);
-    await page.keyboard.type(cnf.username);
-    await page.click(cnf.selectors.password_field);
-    await page.keyboard.type(cnf.password);
+    // // Login
+    // await page.click(cnf.selectors.username_field);
+    // await page.keyboard.type(cnf.username);
+    // await page.click(cnf.selectors.password_field);
+    // await page.keyboard.type(cnf.password);
 
-    await page.screenshot({ path: `screenshots/2.jpeg` });
+    // await page.screenshot({ path: `screenshots/2.jpeg` });
 
     
-    await page.click(cnf.selectors.login_button);  
+    // await page.click(cnf.selectors.login_button);  
     
-    //await page.waitForTimeout(2500);
-    await page.screenshot({ path: `screenshots/3.jpeg` });
+    // //await page.waitForTimeout(2500);
+    // await page.screenshot({ path: `screenshots/3.jpeg` });
     //await page.waitForNavigation();
 
    
