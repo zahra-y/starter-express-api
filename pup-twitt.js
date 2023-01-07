@@ -6,8 +6,13 @@ fs = require('fs');
 let cnf = require('./config/config-twitt.json');
 
 async function autoScroll(page){
+
+    console.log('totalHeight1')
+
     await page.evaluate(async () => {
+        console.log('totalHeight2')
         await new Promise((resolve) => {
+            console.log('totalHeight3')
             var totalHeight = 0;
             var count_scroll = 0;
             var distance = 100;
@@ -17,7 +22,9 @@ async function autoScroll(page){
                 window.scrollBy(0, distance);
                 totalHeight += distance;
 
-                if( count_scroll<10 ){
+                console.log('totalHeight',totalHeight)
+                console.log('count_scroll',count_scroll)
+                if( count_scroll>=100 ){
                     clearInterval(timer);
                     resolve();
                 }
@@ -46,6 +53,7 @@ let run = async function () {
     //console.log('page_content',page_content)
 
     // // Login
+    await page.waitForSelector(cnf.selectors.username_field, {timeout: 1000000});
     await page.click(cnf.selectors.username_field); 
     await page.keyboard.type(cnf.email);
 
@@ -63,40 +71,40 @@ let run = async function () {
     await page.screenshot({ path: `screenshots/3.jpeg`, fullPage: true });
 
     const html = await page.content();
-    fs.writeFile('./views/twitter_page.html', html, function (err) {
+    fs.appendFile('./views/twitter_page.html', html, function (err) {
         if (err) return console.log(err);
            console.log('Hello World > helloworld.txt');
        });
 
-        // var $ = cheerio.load(html);
+        var $ = cheerio.load(html);
 
-        // var ltr_hashtag = '';
-        // var rtl_hashtag = '';
+        var ltr_hashtag = '';
+        var rtl_hashtag = '';
 
-        // $('div[class="css-901oao r-18jsvk2 r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-bnwqim r-qvutc0"]', html).each(function() {
+        $('div[class="css-901oao r-18jsvk2 r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-bnwqim r-qvutc0"]', html).each(function() {
             
-        //     article_content = $(this).text();
-        //     console.log('article_content',article_content);
+            article_content = $(this).text();
+            console.log('article_content',article_content);
            
-        //     $(this).find('a[dir="ltr"]', html).each(function() {
+            $(this).find('a[dir="ltr"]', html).each(function() {
             
-        //         ltr_hashtag = $(this).text();
+                ltr_hashtag = $(this).text();
 
-        //         if( ltr_hashtag.includes('#') ){
-        //             console.log('ltr_hashtag',ltr_hashtag);
-        //         }
-        //     });    
+                if( ltr_hashtag.includes('#') ){
+                    console.log('ltr_hashtag',ltr_hashtag);
+                }
+            });    
             
-        //     $(this).find('a[dir="rtl"]', html).each(function() { 
+            $(this).find('a[dir="rtl"]', html).each(function() { 
             
-        //         rtl_hashtag = $(this).text();
+                rtl_hashtag = $(this).text();
 
-        //         if( rtl_hashtag.includes('#') ){
-        //             console.log('rtl_hashtag',rtl_hashtag);
-        //         }
-        //     });    
+                if( rtl_hashtag.includes('#') ){
+                    console.log('rtl_hashtag',rtl_hashtag);
+                }
+            });    
 
-        // });
+        });
 
 
 
