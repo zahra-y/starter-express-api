@@ -1,8 +1,13 @@
 //const url = 'https://en.wikipedia.org/wiki/George_Washington'
 
-//let bot = require('./puppeteer');
-let botTwitt = require('./pup-twitt');
-botTwitt();
+
+require('dotenv').config()
+
+//let botTwitt = require('./pupp-twitt');
+//botTwitt();
+
+let read = require('./read-twitt');
+read();
 
 // fs.readFile('./views/tmp.html', 'utf8', (err, html) => {
 //     if (err) {
@@ -11,10 +16,6 @@ botTwitt();
 //     }
 
 //   });
-
-
-//setInterval(bot, cnf.settings.run_every_x_hours * 3600000);
-
 
 // puppeteer
 //   .launch()
