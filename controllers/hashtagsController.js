@@ -1,5 +1,5 @@
 const Hashtag = require('../models/Hashtag')
-const Author = require('../models/Author')
+const User = require('../models/User')
 const asyncHandler = require('express-async-handler')
 
 // @desc Get all hashtags 
@@ -14,29 +14,41 @@ const getAllHashtags = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: 'No hashtags found' })
     }
 
-    res.json(hashtags)
+    // Add username to each hashtag before sending the response 
+    // See Promise.all with map() here: https://youtu.be/4lqJBBEpjRE 
+    // You could also do this with a for...of loop
+    const hashtagsWithUser = await Promise.all(hashtags.map(async (hashtag) => {
+        
+        if(hashtag.user){
+            const user = await User.findById(hashtag.user).lean().exec();
+            return { ...hashtag, username:user.username  };
+        }
+        return { ...hashtag }
+    }))
+
+    res.json(hashtagsWithUser)
 })
 
 // @desc Create new hashtag
 // @route POST /hashtags
 // @access Private
 const createNewHashtag = asyncHandler(async (req, res) => {
-    const { hashtags, text } = req.body
+    const { user, title, text } = req.body
 
     // Confirm data
-    if ( !hashtags || !text) {
+    if (!user || !title || !text) {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
     // Check for duplicate title
-    //const duplicate = await Hashtag.findOne({ title }).lean().exec()
+    const duplicate = await Hashtag.findOne({ title }).lean().exec()
 
-    //if (duplicate) {
-       // return res.status(409).json({ message: 'Duplicate hashtag title' })
-    //}
+    if (duplicate) {
+        return res.status(409).json({ message: 'Duplicate hashtag title' })
+    }
 
-    // Create and store the new hashtag 
-    const hashtag = await Hashtag.create({ hashtags, text })
+    // Create and store the new user 
+    const hashtag = await Hashtag.create({ user, title, text })
 
     if (hashtag) { // Created 
         return res.status(201).json({ message: 'New hashtag created' })
